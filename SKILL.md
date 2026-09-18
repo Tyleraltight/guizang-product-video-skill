@@ -1,5 +1,6 @@
 ---
 name: guizang-product-video-skill
+license: "AGPL-3.0; CodePilot fallback assets: BUSL-1.1 (see README.md)"
 description: 制作代码驱动的软件版本更新宣传片（release notes video、changelog promo）。从真实更新提炼卖点，复用产品组件和设计语言，完成分镜、代码原创配乐、动作音效、渲染与验收。
 ---
 

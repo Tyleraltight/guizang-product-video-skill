@@ -7,3 +7,5 @@
 复制或分发这个目录时保留 `LICENSE.CodePilot`、本说明与来源记录。原仓库采用 Business Source License 1.1，包含 Additional Use Grant；不能把这份代码重新标为 MIT 或声称无限制商业使用。作者已明确选择保留现有 BSL 授权，不为此改编包新增 MIT 授权。default/hybrid 复制的组件与样式属于此许可范围；他人为其他产品制作或分发影片时，应根据 LICENSE.CodePilot 的 Additional Use Grant 判断用途，不能将默认样式当作无限制商用素材。repo 模式不复制此目录。
 
 这里不包含 CodePilot Logo、业务页面、第三方音效或系统字体。使用目标产品自己的品牌资源。
+
+本目录为仓库主协议之外的单独授权内容，继续适用 `LICENSE.CodePilot`。根目录新增的 GNU AGPL-3.0 不替换此目录的许可；组合使用或分发时分别核对适用条款。

@@ -3,6 +3,7 @@
 **软件更新了，顺手把宣传片也做了。**
 
 [![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-product-video-skill?style=flat-square)](https://github.com/op7418/guizang-product-video-skill/stargazers)
+[![License](https://img.shields.io/github/license/op7418/guizang-product-video-skill?style=flat-square)](LICENSE)
 ![Agent Skill](https://img.shields.io/badge/Agent-Skill-252525?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude-Code-D97757?style=flat-square)
 ![Codex](https://img.shields.io/badge/Codex-supported-252525?style=flat-square)
@@ -167,6 +168,8 @@ git clone https://github.com/op7418/guizang-product-video-skill.git \
 ## 仓库里有什么？
 
 ```text
+LICENSE                  GNU AGPL-3.0 主许可证
+COMMERCIAL_LICENSING.md   单独商业授权的合作入口
 SKILL.md                 工作流、硬约束和工具入口
 agents/                  Codex 的展示信息
 references/              组件接入、分镜文案、音频、依赖与验收方法
@@ -213,3 +216,20 @@ python3 -m unittest discover -s tests
 欢迎在 [Issues](https://github.com/op7418/guizang-product-video-skill/issues) 分享作品、问题和改进建议。反馈时最好带上使用的 AI 工具、产品技术栈、失败阶段，以及脱敏后的日志或画面。
 
 如果你也想让 AI 帮你做图文，可以看看 [归藏社交媒体卡片 skill](https://github.com/op7418/guizang-social-card-skill)。
+
+## License
+
+GNU AGPL-3.0 © 2026 [op7418](https://github.com/op7418)
+
+除下文明确单独授权的内容外，本仓库的工作流、文档、脚本、起步工程和原创音频资产采用 **GNU AGPL-3.0**，完整条款见 [LICENSE](LICENSE)。
+
+- 复制或分发时保留版权、许可证和相关声明；发布修改版时说明修改内容。
+- 分发受该许可证约束的修改版或衍生程序时，遵守 AGPL-3.0 对许可和对应源码的要求。
+- 修改后的程序支持远程网络交互时，应按第 13 条向与其交互的用户提供免费获取该版本对应源码的方式。
+- AGPL-3.0 允许商业使用和收费分发；收费不会免除适用的许可证与源码提供义务。
+
+**单独授权的内容：** [assets/fallback/](assets/fallback/SOURCE.md) 中改编自 CodePilot 的组件和样式继续适用 [Business Source License 1.1](assets/fallback/LICENSE.CodePilot)，包括其中的 Additional Use Grant 和 Change Date。它们不因主许可证的加入而改为 AGPL。使用、修改或分发包含这些组件的工程时，需要同时核对相关条款，不能将混合后的工程整体宣称为仅受 AGPL 约束或可无限制商用。
+
+接入的产品组件、Logo、字体、第三方音乐或音效，依各自适用许可使用。生成的视频也不会仅因使用本工具就自动变为 AGPL 作品；若输出包含受保护的组件、素材或代码，其适用条款仍需保留和遵守。
+
+如需闭源集成、白标、平台内置、上架合作或不适用 AGPL 条件的单独授权，请参阅 [商业授权合作说明](COMMERCIAL_LICENSING.md)。本节是阅读指引，具体权利与义务以适用许可证或双方书面协议为准。
