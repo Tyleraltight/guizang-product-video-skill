@@ -14,8 +14,10 @@ import sys
 
 def run(args, cwd=None, timeout=30):
     try:
-        p=subprocess.run(args,cwd=cwd,capture_output=True,text=True,timeout=timeout)
-        return {'ok':p.returncode==0,'stdout':p.stdout.strip(),'stderr':p.stderr.strip(),'output':(p.stdout+p.stderr).strip()}
+        p=subprocess.run(args,cwd=cwd,capture_output=True,text=True,timeout=timeout,encoding='utf-8',errors='replace')
+        stdout = p.stdout.strip() if p.stdout else ''
+        stderr = p.stderr.strip() if p.stderr else ''
+        return {'ok':p.returncode==0,'stdout':stdout,'stderr':stderr,'output':(stdout+' '+stderr).strip()}
     except (OSError,subprocess.TimeoutExpired) as e:return {'ok':False,'output':str(e)}
 
 

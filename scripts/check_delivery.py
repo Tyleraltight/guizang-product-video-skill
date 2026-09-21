@@ -213,7 +213,7 @@ def check(plan, video=None, project_dir=None, mix_report=None, plan_path=None):
     creative_checks(plan, errors, warnings, project_dir, mix_report, bool(video), plan_path)
     if video:
         try:
-            proc=subprocess.run(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(video)],capture_output=True,text=True,check=True)
+            proc=subprocess.run(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(video)],capture_output=True,text=True,encoding='utf-8',errors='replace',check=True)
             meta=json.loads(proc.stdout)
             streams=meta.get('streams',[])
             videos=[s for s in streams if s.get('codec_type')=='video']
@@ -247,7 +247,7 @@ def main():
     p.add_argument('--mix-report',type=Path)
     args=p.parse_args()
     try:
-        result=check(json.loads(args.plan.read_text()),args.video,args.plan.resolve().parent,args.mix_report,args.plan)
+        result=check(json.loads(args.plan.read_text(encoding='utf-8')),args.video,args.plan.resolve().parent,args.mix_report,args.plan)
     except (OSError,ValueError) as exc:
         result={'errors':[str(exc)],'warnings':[]}
     result['ok']=not result['errors']
