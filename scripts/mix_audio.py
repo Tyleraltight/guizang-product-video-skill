@@ -64,8 +64,27 @@ def duck_expression(windows):
     return result
 
 
+def load_plan(plan_path):
+    p = Path(plan_path)
+    try:
+        return json.loads(p.read_text(encoding='utf-8'))
+    except UnicodeDecodeError:
+        for enc in ['locale', 'gbk', 'cp936']:
+            try:
+                content = p.read_text() if enc == 'locale' else p.read_text(encoding=enc)
+                data = json.loads(content)
+                try:
+                    p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+                except OSError as err:
+                    print(f"Warning: Failed to rewrite '{p.name}' to UTF-8: {err}", file=sys.stderr)
+                return data
+            except (UnicodeDecodeError, json.JSONDecodeError, OSError):
+                continue
+        raise ValueError(f"Plan file '{p.name}' is not valid UTF-8. Please convert to UTF-8.")
+
+
 def mix(plan_path):
-    plan_path=plan_path.resolve();base=plan_path.parent;plan=json.loads(plan_path.read_text(encoding='utf-8'))
+    plan_path=plan_path.resolve();base=plan_path.parent;plan=load_plan(plan_path)
     duration=plan['duration'];audio=plan.get('audio',{});music=audio.get('music',{});cues=audio.get('cues',[])
     if not finite(duration) or duration<=0:raise ValueError('Invalid duration')
     if not isinstance(cues,list) or not cues:raise ValueError('No SFX cues. A BGM-only master is not a completed sound design.')

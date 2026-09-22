@@ -83,7 +83,7 @@ console.log(JSON.stringify(result));'''
     details={'schema':2,'engine':a.engine,'platform':platform.platform(),'versions':versions,'packages':modules,'manifests':package_files,'browserEnv':{k:os.environ.get(k) for k in ['PLAYWRIGHT_BROWSERS_PATH','HYPERFRAMES_CHROME_PATH']}}
     fingerprint=hashlib.sha256(json.dumps(details,sort_keys=True).encode()).hexdigest()
     state=project/'evidence/environment.json';old={}
-    try:old=json.loads(state.read_text())
+    try:old=json.loads(state.read_text(encoding='utf-8'))
     except (OSError,ValueError):pass
     cached=not missing and old.get('ready') and old.get('fingerprint')==fingerprint and not a.force
     # Launch is the availability check: headless-shell can exist without full Chromium.
@@ -107,7 +107,7 @@ console.log(JSON.stringify(result));'''
     ready=not missing
     report={'ready':ready,'cached':bool(cached),'engine':a.engine,'missing':missing,'warnings':warnings,'fingerprint':fingerprint,'details':details,'browser':browser,
             'next':'Continue; do not load onboarding.' if ready else 'Read references/onboarding.md for only the reported engine/platform gaps, install them, then rerun with --force.'}
-    state.parent.mkdir(exist_ok=True);state.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    state.parent.mkdir(exist_ok=True);state.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in report.items() if k!='details'},ensure_ascii=False,indent=2))
     sys.exit(0 if ready else 1)
 if __name__=='__main__':main()
